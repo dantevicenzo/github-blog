@@ -3,19 +3,19 @@ import styled from 'styled-components'
 export const Container = styled.div`
   width: 54rem;
   margin: 0 auto;
-  margin-top: -88px;
+  margin-top: -5.5rem;
   background-color: ${(props) => props.theme.baseProfile};
 
-  padding: 32px 32px 32px 40px;
+  padding: 2rem 2rem 2rem 2.5rem;
 
   display: flex;
 
-  gap: 32px;
+  gap: 2rem;
 `
 
 export const Image = styled.img`
-  height: 148px;
-  width: 148px;
+  height: 9.25rem;
+  width: 9.25rem;
   border-radius: 8px;
 `
 export const TitleContainer = styled.header`
@@ -27,12 +27,12 @@ export const TitleContainer = styled.header`
     display: flex;
     align-items: center;
 
-    gap: 8px;
+    gap: 0.5rem;
 
     text-decoration: none;
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 12px;
+    font-size: 0.75rem;
 
     color: ${(props) => props.theme.blue};
   }
@@ -40,23 +40,23 @@ export const TitleContainer = styled.header`
   h3 {
     color: ${(props) => props.theme.baseTitle};
     font-weight: bold;
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 `
 export const Content = styled.p`
   font-size: 1rem;
-  margin-top: 8px;
+  margin-top: 0.5rem;
 `
 export const InfoContainer = styled.footer`
   display: flex;
   gap: 24px;
 
-  margin-top: 23px;
+  margin-top: 1.438rem;
 `
 export const Info = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 0.5rem;
 
   svg {
     color: ${(props) => props.theme.baseLabel};
