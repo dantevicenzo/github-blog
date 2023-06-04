@@ -1,7 +1,9 @@
+import { Blog } from './pages/Blog'
+
 export function App() {
   return (
     <>
-      <h1>Github Blog</h1>
+      <Blog />
     </>
   )
 }
