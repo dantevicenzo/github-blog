@@ -35,6 +35,7 @@ export const TitleContainer = styled.header`
     font-size: 0.75rem;
 
     color: ${(props) => props.theme.blue};
+    line-height: 0;
   }
 
   h3 {
@@ -65,5 +66,6 @@ export const Info = styled.div`
 
   span {
     color: ${(props) => props.theme.baseSubtitle};
+    line-height: 0;
   }
 `

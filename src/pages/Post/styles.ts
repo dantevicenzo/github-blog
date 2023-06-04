@@ -21,6 +21,7 @@ export const HeaderLinks = styled.header`
     font-size: 12px;
     font-weight: bold;
     color: ${(props) => props.theme.blue};
+    line-height: 0;
   }
 `
 export const Title = styled.h3`
@@ -48,6 +49,7 @@ export const FooterInfo = styled.div`
   span {
     color: ${(props) => props.theme.baseSpan};
     font-size: 1rem;
+    line-height: 0;
   }
 `
 export const ContentContainer = styled.div`

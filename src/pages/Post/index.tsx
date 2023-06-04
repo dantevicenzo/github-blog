@@ -1,4 +1,3 @@
-import { Header } from '../../components/Header'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faArrowUpRightFromSquare,
@@ -21,7 +20,7 @@ export function Post() {
     <>
       <InfoContainer>
         <HeaderLinks>
-          <a href="">
+          <a href="/">
             <FontAwesomeIcon icon={faChevronLeft} />
             Voltar
           </a>

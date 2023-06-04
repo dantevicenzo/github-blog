@@ -1,9 +1,11 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
+export const Container = styled.a`
   background-color: ${(props) => props.theme.basePost};
   padding: 2rem;
   border-radius: 10px;
+
+  text-decoration: none;
 `
 export const Header = styled.header`
   display: flex;
