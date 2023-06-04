@@ -33,10 +33,17 @@ export const GlobalStyle = createGlobalStyle`
     transition: background-color, color, 0.15s;
   }
 
-  ::placeholder,
-  :-ms-input-placeholder,
-  ::-ms-input-placeholder { 
-    color: ${(props) => props.theme.baseLabel}
-  }
+::placeholder {
+  color: ${(props) => props.theme.baseLabel};
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: ${(props) => props.theme.baseLabel};
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: ${(props) => props.theme.baseLabel};
+}
 
 `
