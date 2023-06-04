@@ -4,6 +4,7 @@ import logo from '../../assets/header-cover.svg'
 export const Container = styled.header`
   height: 18.5rem;
   background-image: url('${logo}');
+  background-size: cover;
 
   display: flex;
   justify-content: center;

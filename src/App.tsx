@@ -1,9 +1,9 @@
-import { Blog } from './pages/Blog'
+import { Router } from './Router'
 
 export function App() {
   return (
     <>
-      <Blog />
+      <Router />
     </>
   )
 }
