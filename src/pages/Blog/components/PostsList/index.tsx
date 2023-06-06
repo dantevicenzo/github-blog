@@ -1,13 +1,13 @@
 import { Container, StyledInput, Header, ListContainer } from './styles'
 import { PostCard } from '../PostCard'
-import { useState, useContext } from 'react'
+import { useState, useContext, KeyboardEvent } from 'react'
 import { PostsContext } from '../../../../contexts/PostsContextProvider'
 
 export function PostsList() {
   const [query, setQuery] = useState('')
   const { posts, loadPosts } = useContext(PostsContext)
 
-  const handleKeyDownSearch = (event: KeyboardEvent) => {
+  const handleKeyDownSearch = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       loadPosts(query)
     }
