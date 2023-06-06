@@ -1,19 +1,32 @@
+import { useNavigate } from 'react-router-dom'
 import { Container, Content, Header } from './styles'
+import { formatDistanceToNow } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
+import { useContext } from 'react'
+import {
+  IGithubPost,
+  PostsContext,
+} from '../../../../contexts/PostsContextProvider'
 
-export function PostCard() {
+import { getFormattedDateWithSuffix } from '../../../../utils/formatter'
+
+export function PostCard(props: IGithubPost) {
+  const navigate = useNavigate()
+
+  const { handleSetSelectedPost } = useContext(PostsContext)
+
+  function handleCardOnClick() {
+    handleSetSelectedPost(props)
+    navigate('/post')
+  }
+
   return (
-    <Container href="/post">
+    <Container onClick={handleCardOnClick}>
       <Header>
-        <strong>JavaScript data types and data structures</strong>
-        <span>Há 1 dia</span>
+        <strong>{props.title}</strong>
+        <span>{getFormattedDateWithSuffix(props.created_at)}</span>
       </Header>
-      <Content>
-        Programming languages all have built-in data structures, but these often
-        differ from one language to another. This article attempts to list the
-        built-in data structures available in JavaScript and what properties
-        they have. These can be used to build other data structures. Wherever
-        possible, comparisons with other languages are drawn.
-      </Content>
+      <Content>{props.body}</Content>
     </Container>
   )
 }

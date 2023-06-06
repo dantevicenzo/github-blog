@@ -18,10 +18,16 @@ export const Image = styled.img`
   width: 9.25rem;
   border-radius: 8px;
 `
+
+export const TitleContentInfoWrapper = styled.div`
+  width: 100%;
+`
+
 export const TitleContainer = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
 
   a {
     display: flex;

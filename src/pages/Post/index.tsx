@@ -14,8 +14,13 @@ import {
   InfoContainer,
   Title,
 } from './styles'
+import { useContext } from 'react'
+import { PostsContext } from '../../contexts/PostsContextProvider'
+import { getFormattedDateWithSuffix } from '../../utils/formatter'
 
 export function Post() {
+  const { selectedPost } = useContext(PostsContext)
+
   return (
     <>
       <InfoContainer>
@@ -24,37 +29,28 @@ export function Post() {
             <FontAwesomeIcon icon={faChevronLeft} />
             Voltar
           </a>
-          <a href="">
+          <a href={selectedPost.html_url}>
             Ver no Github <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
           </a>
         </HeaderLinks>
-        <Title>JavaScript data types and data structures</Title>
+        <Title>{selectedPost.title}</Title>
         <FooterInfoContainer>
           <FooterInfo>
-            <FontAwesomeIcon icon={faGithub} /> <span>dantevicenzo</span>
+            <FontAwesomeIcon icon={faGithub} />
+            <span>{selectedPost.user.login}</span>
           </FooterInfo>
           <FooterInfo>
-            <FontAwesomeIcon icon={faCalendarDay} /> <span>Há 1 dia</span>
+            <FontAwesomeIcon icon={faCalendarDay} />
+            <span>{getFormattedDateWithSuffix(selectedPost.created_at)}</span>
           </FooterInfo>
           <FooterInfo>
-            <FontAwesomeIcon icon={faComment} /> <span>5 comentários</span>
+            <FontAwesomeIcon icon={faComment} />
+            <span>{selectedPost.comments} comentários</span>
           </FooterInfo>
         </FooterInfoContainer>
       </InfoContainer>
       <ContentContainer>
-        <p>
-          <strong>
-            Programming languages all have built-in data structures, but these
-            often differ from one language to another.
-          </strong>
-          This article attempts to list the built-in data structures available
-          in JavaScript and what properties they have. These can be used to
-          build other data structures. Wherever possible, comparisons with other
-          languages are drawn. Dynamic typing JavaScript is a loosely typed and
-          dynamic language. Variables in JavaScript are not directly associated
-          with any particular value type, and any variable can be assigned (and
-          re-assigned) values of all types:
-        </p>
+        <p>{selectedPost.body}</p>
       </ContentContainer>
     </>
   )

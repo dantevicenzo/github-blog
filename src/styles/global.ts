@@ -30,7 +30,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    transition: background-color, color, 0.15s;
+    transition: background-color 0.15s, color 0.15s, box-shadow 0.15s;
   }
 
 ::placeholder {

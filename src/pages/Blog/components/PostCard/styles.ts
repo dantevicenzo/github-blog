@@ -1,11 +1,16 @@
 import styled from 'styled-components'
 
 export const Container = styled.a`
+  max-width: 416px;
   background-color: ${(props) => props.theme.basePost};
   padding: 2rem;
   border-radius: 10px;
 
   text-decoration: none;
+
+  &:hover {
+    box-shadow: 0 0 0 1px ${(props) => props.theme.baseSpan};
+  }
 `
 export const Header = styled.header`
   display: flex;
