@@ -15,7 +15,7 @@ import {
   Title,
 } from './styles'
 import { useLayoutEffect, useState } from 'react'
-import { IGithubPost } from '../../contexts/PostsContextProvider'
+import { IGithubPost } from '../Blog/components/PostsList'
 import { getFormattedDateWithSuffix } from '../../utils/formatter'
 import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
