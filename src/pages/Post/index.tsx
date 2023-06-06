@@ -14,28 +14,33 @@ import {
   InfoContainer,
   Title,
 } from './styles'
-import { useContext, useEffect } from 'react'
-import { PostsContext } from '../../contexts/PostsContextProvider'
+import { useLayoutEffect, useState } from 'react'
+import { IGithubPost } from '../../contexts/PostsContextProvider'
 import { getFormattedDateWithSuffix } from '../../utils/formatter'
 import ReactMarkdown from 'react-markdown'
 import gfm from 'remark-gfm'
-import { useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { api } from '../../lib/axios'
 
 export function Post() {
-  const { selectedPost } = useContext(PostsContext)
-  const navigate = useNavigate()
+  const { postId } = useParams()
+  const [post, setPost] = useState({} as IGithubPost)
+  const postIsDefined = Object.keys(post).length > 0
 
-  const selectedPostIsDefined = Object.keys(selectedPost).length > 0
+  async function loadPost(number?: string) {
+    const response = await api.get(
+      `https://api.github.com/repos/rocketseat-education/reactjs-github-blog-challenge/issues/${number}`,
+    )
+    setPost(response.data)
+  }
 
-  useEffect(() => {
-    if (!selectedPostIsDefined) {
-      navigate('/')
-    }
-  }, [selectedPostIsDefined, navigate])
+  useLayoutEffect(() => {
+    loadPost(postId)
+  }, [postId])
 
   return (
     <>
-      {selectedPostIsDefined && (
+      {postIsDefined && (
         <>
           <InfoContainer>
             <HeaderLinks>
@@ -43,33 +48,29 @@ export function Post() {
                 <FontAwesomeIcon icon={faChevronLeft} />
                 Voltar
               </a>
-              <a href={selectedPost.html_url} target="_blank" rel="noreferrer">
+              <a href={post.html_url} target="_blank" rel="noreferrer">
                 Ver no Github{' '}
                 <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
               </a>
             </HeaderLinks>
-            <Title>{selectedPost.title}</Title>
+            <Title>{post.title}</Title>
             <FooterInfoContainer>
               <FooterInfo>
                 <FontAwesomeIcon icon={faGithub} />
-                <span>{selectedPost.user.login}</span>
+                <span>{post.user.login}</span>
               </FooterInfo>
               <FooterInfo>
                 <FontAwesomeIcon icon={faCalendarDay} />
-                <span>
-                  {getFormattedDateWithSuffix(selectedPost.created_at)}
-                </span>
+                <span>{getFormattedDateWithSuffix(post.created_at)}</span>
               </FooterInfo>
               <FooterInfo>
                 <FontAwesomeIcon icon={faComment} />
-                <span>{selectedPost.comments} comentários</span>
+                <span>{post.comments} comentários</span>
               </FooterInfo>
             </FooterInfoContainer>
           </InfoContainer>
           <ContentContainer>
-            <ReactMarkdown remarkPlugins={[gfm]}>
-              {selectedPost.body}
-            </ReactMarkdown>
+            <ReactMarkdown remarkPlugins={[gfm]}>{post.body}</ReactMarkdown>
           </ContentContainer>
         </>
       )}
