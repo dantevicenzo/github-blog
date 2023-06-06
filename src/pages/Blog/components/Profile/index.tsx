@@ -12,6 +12,7 @@ import {
   faArrowUpRightFromSquare,
   faBuilding,
   faUserGroup,
+  faLocationDot,
 } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { api } from '../../../../lib/axios'
@@ -24,13 +25,20 @@ interface IGithubUser {
   name: string
   html_url: string
   followers: number
+  company: string
+  location: string
 }
 
-export function Profile() {
+interface IProfileProps {
+  gitUsername?: string
+}
+
+export function Profile({ gitUsername }: IProfileProps) {
   const [user, setUser] = useState({} as IGithubUser)
 
   async function loadProfile() {
-    const response = await api.get('/users/dantevicenzo')
+    const user = gitUsername || 'dantevicenzo'
+    const response = await api.get(`/users/${user}`)
     setUser(response.data)
   }
 
@@ -54,9 +62,18 @@ export function Profile() {
           <Info>
             <FontAwesomeIcon icon={faGithub} /> <span>{user.login}</span>
           </Info>
-          <Info>
-            <FontAwesomeIcon icon={faBuilding} /> <span>Rocketseat</span>
-          </Info>
+          {user.company && (
+            <Info>
+              <FontAwesomeIcon icon={faBuilding} /> <span>{user.company}</span>
+            </Info>
+          )}
+          {user.location && (
+            <Info>
+              <FontAwesomeIcon icon={faLocationDot} />{' '}
+              <span>{user.location}</span>
+            </Info>
+          )}
+
           <Info>
             <FontAwesomeIcon icon={faUserGroup} />{' '}
             <span>{user.followers} seguidores</span>

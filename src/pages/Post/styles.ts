@@ -1,5 +1,9 @@
 import { styled } from 'styled-components'
 
+export const Container = styled.div`
+  padding: 0 1rem;
+`
+
 export const InfoContainer = styled.div`
   width: 864px;
   margin: -88px auto 0;

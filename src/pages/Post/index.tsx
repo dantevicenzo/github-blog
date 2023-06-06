@@ -7,6 +7,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import {
+  Container,
   ContentContainer,
   FooterInfo,
   FooterInfoContainer,
@@ -14,7 +15,7 @@ import {
   InfoContainer,
   Title,
 } from './styles'
-import { useLayoutEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { IGithubPost } from '../Blog/components/PostsList'
 import { getFormattedDateWithSuffix } from '../../utils/formatter'
 import ReactMarkdown from 'react-markdown'
@@ -23,28 +24,30 @@ import { useParams } from 'react-router-dom'
 import { api } from '../../lib/axios'
 
 export function Post() {
-  const { postId } = useParams()
+  const { gitUsername, postId } = useParams()
   const [post, setPost] = useState({} as IGithubPost)
   const postIsDefined = Object.keys(post).length > 0
 
+  const user = gitUsername || 'dantevicenzo'
+
   async function loadPost(number?: string) {
     const response = await api.get(
-      `https://api.github.com/repos/rocketseat-education/reactjs-github-blog-challenge/issues/${number}`,
+      `https://api.github.com/repos/${user}/github-blog/issues/${number}`,
     )
     setPost(response.data)
   }
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     loadPost(postId)
-  }, [postId])
+  }, [])
 
   return (
-    <>
+    <Container>
       {postIsDefined && (
         <>
           <InfoContainer>
             <HeaderLinks>
-              <a href="/">
+              <a href={`/${user}`}>
                 <FontAwesomeIcon icon={faChevronLeft} />
                 Voltar
               </a>
@@ -74,6 +77,6 @@ export function Post() {
           </ContentContainer>
         </>
       )}
-    </>
+    </Container>
   )
 }

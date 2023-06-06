@@ -1,14 +1,15 @@
 import { useNavigate } from 'react-router-dom'
 import { Container, Content, Header } from './styles'
 import { IGithubPost } from '../PostsList'
-
 import { getFormattedDateWithSuffix } from '../../../../utils/formatter'
+import ReactMarkdown from 'react-markdown'
 
 export function PostCard(props: IGithubPost) {
   const navigate = useNavigate()
 
   function handleCardOnClick() {
-    navigate(`/${props.number}`)
+    const user = props.gitUsername || 'dantevicenzo'
+    navigate(`/${user}/post/${props.number}`)
   }
 
   return (
@@ -17,7 +18,9 @@ export function PostCard(props: IGithubPost) {
         <strong>{props.title}</strong>
         <span>{getFormattedDateWithSuffix(props.created_at)}</span>
       </Header>
-      <Content>{props.body}</Content>
+      <Content>
+        <ReactMarkdown>{props.body}</ReactMarkdown>
+      </Content>
     </Container>
   )
 }

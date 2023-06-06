@@ -31,13 +31,22 @@ export const Header = styled.header`
     white-space: nowrap;
   }
 `
-export const Content = styled.p`
+export const Content = styled.div`
   margin-top: 1.25rem;
-  font-size: 1rem;
   color: ${(props) => props.theme.baseText};
 
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 1rem;
+  }
 `
