@@ -54,6 +54,12 @@ export const FooterInfo = styled.div`
 `
 export const ContentContainer = styled.div`
   width: 864px;
+  max-width: 864px;
+
+  img {
+    max-width: 790px;
+  }
+
   margin: 0 auto;
   padding: 40px 32px;
 `

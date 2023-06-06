@@ -30,7 +30,7 @@ export function Profile() {
   const [user, setUser] = useState({} as IGithubUser)
 
   async function loadProfile() {
-    const response = await api.get('/users/rocketseat-education')
+    const response = await api.get('/users/dantevicenzo')
     setUser(response.data)
   }
 

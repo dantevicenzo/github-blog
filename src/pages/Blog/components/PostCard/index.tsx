@@ -1,7 +1,5 @@
 import { useNavigate } from 'react-router-dom'
 import { Container, Content, Header } from './styles'
-import { formatDistanceToNow } from 'date-fns'
-import ptBR from 'date-fns/locale/pt-BR'
 import { useContext } from 'react'
 import {
   IGithubPost,

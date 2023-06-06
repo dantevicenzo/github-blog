@@ -8,6 +8,8 @@ export const Container = styled.a`
 
   text-decoration: none;
 
+  cursor: pointer;
+
   &:hover {
     box-shadow: 0 0 0 1px ${(props) => props.theme.baseSpan};
   }
