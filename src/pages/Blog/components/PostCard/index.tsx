@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { Container, Content, Header } from './styles'
-import { IGithubPost } from '../../../../contexts/PostsContextProvider'
+import { IGithubPost } from '../PostsList'
 
 import { getFormattedDateWithSuffix } from '../../../../utils/formatter'
 
