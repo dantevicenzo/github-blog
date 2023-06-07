@@ -20,6 +20,8 @@ export const Image = styled.img`
 `
 
 export const TitleContentInfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
 `
 
@@ -53,6 +55,7 @@ export const TitleContainer = styled.header`
 export const Content = styled.p`
   font-size: 1rem;
   margin-top: 0.5rem;
+  flex-grow: 1;
 `
 export const InfoContainer = styled.footer`
   display: flex;
