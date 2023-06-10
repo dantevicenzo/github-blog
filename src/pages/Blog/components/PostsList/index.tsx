@@ -3,6 +3,15 @@ import { PostCard } from '../PostCard'
 import { useState, KeyboardEvent, useEffect, ChangeEvent } from 'react'
 import { api } from '../../../../lib/axios'
 
+interface ILabel {
+  color: string
+  default: boolean
+  description: string
+  id: number
+  name: string
+  node_id: string
+  url: string
+}
 export interface IGithubPost {
   id: number
   number: number
@@ -14,6 +23,7 @@ export interface IGithubPost {
   user: {
     login: string
   }
+  labels: ILabel[]
   gitUsername: string | undefined
 }
 
@@ -33,12 +43,18 @@ export function PostsList({ gitUsername }: IPostsListProps) {
         query != null ? query : ''
       }%20repo:${user}/github-blog`,
     )
-    setPosts(
-      response.data.items.filter((item: IGithubPost) => item.body != null),
-    )
-    setFilteredPosts(
-      response.data.items.filter((item: IGithubPost) => item.body != null),
-    )
+    const articlesList = response.data.items.filter((item: IGithubPost) => {
+      if (item.body !== null) {
+        const hasArticleLabel = item.labels.some(
+          (label) => label.name === 'article',
+        )
+        return hasArticleLabel
+      }
+      return false
+    })
+    setPosts(articlesList)
+    setFilteredPosts(articlesList)
+    console.log(articlesList)
   }
 
   useEffect(() => {
